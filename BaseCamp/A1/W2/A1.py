@@ -33,7 +33,7 @@ def date_successor(raw_date):
     else:
         days_in_month = 30
 
-    # if day exceeds number of days in a month increment the month
+    # if day exceeds number of days in a month increment the year
     # does not take february into account
     if day < days_in_month:
         day = day + 1
@@ -41,7 +41,6 @@ def date_successor(raw_date):
         day = 1
         month += 1
 
-    # if month exceeds 12 increment the year
     if month > 12:
         year += 1
         day = 1
@@ -58,4 +57,5 @@ def date_successor(raw_date):
 date_successor("2022-10-05")
 date_successor("2022-11-30")
 date_successor("2022-12-31")
+date_successor("2023-01-28")
 date_successor("01-01-2022")
