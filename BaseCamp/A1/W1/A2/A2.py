@@ -1,3 +1,4 @@
+# todo naamgeving functie
 def calculate_tip(amount):
     tax = amount * 0.21
     tip = amount * 0.15

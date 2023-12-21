@@ -1,0 +1,3 @@
+20-12-2023 23:29:58;cpm_name=South;license_plate=BB-494-H;action=check-in
+20-12-2023 23:29:58;cpm_name=South;license_plate=HH-494-B;action=check-in
+20-12-2023 23:30:01;cpm_name=South;license_plate=BB-494-H;action=check-out;parking_fee=4.0

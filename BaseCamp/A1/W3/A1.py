@@ -6,6 +6,7 @@ def job_offer_template(more_letters, type, first_name, last_name, job_title, ann
     if type == "Job Offer":
         if more_letters == "No":
             return
+        # todo name change to is_invalid for logic
         if isinstance(validate_name(first_name), str):
             return print(validate_name(first_name))
         if isinstance(validate_name(last_name), str):

@@ -1,161 +1,124 @@
-import os
-import sys
 import json
 
-'''
-print all contacts in the following format:
-======================================
-Position: <position>
-First name: <firstname>
-Last name: <lastname>
-Emails: <email_1>, <email_2>
-Phone numbers: <number_1>, <number_2>
-'''
+
+class Contact:
+    def __init__(self, contact_data):
+        self.id = contact_data['id']
+        self.first_name = contact_data['first_name']
+        self.last_name = contact_data['last_name']
+        self.emails = contact_data['emails']
+        self.phone_numbers = contact_data['phone_numbers']
+
+    def __str__(self):
+        return f"Position: {self.id}\nFirst name: {self.first_name}\nLast name: {self.last_name}\n" \
+               f"Emails: {', '.join(self.emails)}\nPhone numbers: {', '.join(self.phone_numbers)}\n"
 
 
-def display(addressbook: list):
-    print(addressbook)
+class AddressBook:
+    def __init__(self, contacts):
+        self.contacts = []
+        for contact_data in contacts:
+            contact = Contact(contact_data)
+            self.contacts.append(contact)
+
+    def add_contact(self, first_name, last_name, emails, phone_numbers):
+        contact_id = len(self.contacts) + 1
+        contact_data = {
+            'id': contact_id,
+            'first_name': first_name,
+            'last_name': last_name,
+            'emails': emails,
+            'phone_numbers': phone_numbers
+        }
+        self.contacts.append(Contact(contact_data))
+        print("Contact added to addressbook")
+
+    def remove_contact(self, contact_id):
+        self.contacts = [contact for contact in self.contacts if contact.id != contact_id]
+        print(f"Contact with ID {contact_id} removed from addressbook")
+
+    def list_contacts(self):
+        for contact in self.contacts:
+            print(contact)
+
+    def merge_contacts(self):
+        seen_full_names = set()
+        merged_contacts = []
+
+        for current_contact in self.contacts:
+            full_name = f"{current_contact.first_name} {current_contact.last_name}"
+
+            contact_found = False
+            for existing_contact in merged_contacts:
+                if f"{existing_contact.first_name} {existing_contact.last_name}" == full_name:
+                    contact_found = True
+                    self.merge_contact_info(existing_contact, current_contact)
+                    break
+
+            if not contact_found:
+                seen_full_names.add(full_name)
+                merged_contacts.append(current_contact)
+
+        self.contacts = merged_contacts
+
+    def merge_contact_info(self, existing_contact, new_contact):
+        existing_contact.emails.extend(new_contact.emails)
+        existing_contact.phone_numbers.extend(new_contact.phone_numbers)
 
 
-'''
-return list of contacts sorted by first_name or last_name [if blank then unsorted], direction [ASC (default)/DESC])
-'''
+def load_addressbook(filename):
+    file = open(filename, 'r')
+    data = json.load(file)
+    address_book = AddressBook(data)
+    return address_book
 
 
-def list_contacts(addressbook):
-    # todo: implement this function
-    for contact in addressbook:
-        print("Position: " + str(contact["id"]))
-        print("First name: " + contact["first_name"])
-        print("Last name: " + contact["last_name"])
-        print("Emails: " + ",".join(contact["emails"]))
-        print("Phone numbers: " + ",".join(contact["phone_numbers"]))
-    return main('contacts.json')
+def save_addressbook(address_book, filename):
+    data = [{'id': contact.id,
+             'first_name': contact.first_name,
+             'last_name': contact.last_name,
+             'emails': list(contact.emails),
+             'phone_numbers': list(contact.phone_numbers)} for contact in address_book.contacts]
+
+    with open(filename, 'w') as file:
+        json.dump(data, file, indent=2)
 
 
-'''
-add new contact:
-- first_name
-- last_name
-- emails = {}
-- phone_numbers = {}
-'''
+def main():
+    filename = 'contacts.json'
+    address_book = load_addressbook(filename)
+
+    while True:
+        print("\nMenu:")
+        print("[L] List contacts")
+        print("[A] Add contact")
+        print("[R] Remove contact")
+        print("[M] Merge contacts")
+        print("[Q] Quit program")
+
+        choice = input("Select an option: ").upper()
+
+        if choice == 'L':
+            address_book.list_contacts()
+        elif choice == 'A':
+            first_name = input("First name: ")
+            last_name = input("Last name: ")
+            emails = input("Emails (seperate with comma): ").split(', ')
+            phone_numbers = input("Phone numbers (seperate with comma): ").split(', ')
+            address_book.add_contact(first_name, last_name, emails, phone_numbers)
+        elif choice == 'R':
+            contact_id = int(input("Enter the ID: "))
+            address_book.remove_contact(contact_id)
+        elif choice == 'M':
+            address_book.merge_contacts()
+            print("Contacts merged successfully")
+        elif choice == 'Q':
+            save_addressbook(address_book, filename)
+            print("Quitting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 
-def add_contact(addressbook):
-    # todo: implement this function
-    print("Contact first name:")
-    first_name = input(">>")
-    print("Contact last name:")
-    last_name = input(">>")
-    print("Contact emails (separate by comma):")
-    emails = input(">>")
-    print("Contact phone numbers (separate by comma):")
-    phone_numbers = input(">>")
-
-    new_contact = {
-        "id": len(addressbook) + 1,
-        "first_name": first_name,
-        "last_name": last_name,
-        "emails": emails.split(","),
-        "phone_numbers": phone_numbers.split(",")
-    }
-
-    addressbook.append(new_contact)
-    write_to_json('contacts.json', addressbook)
-
-    return main('contacts.json')
-
-
-'''
-remove contact by ID (integer)
-'''
-
-
-def remove_contact(contact):
-    # todo: implement this function
-    ...
-    return contact
-
-
-'''
-merge duplicates (automated > same fullname [firstname & lastname])
-'''
-
-
-def merge_contacts():
-    # todo: implement this function
-    ...
-
-
-'''
-read_from_json
-Do NOT change this function
-'''
-
-
-def read_from_json(filename) -> list:
-    addressbook = list()
-    # read file
-    with open(os.path.join(sys.path[0], filename)) as outfile:
-        data = json.load(outfile)
-        # iterate over each line in data and call the add function
-        for contact in data:
-            addressbook.append(contact)
-
-    return addressbook
-
-
-'''
-write_to_json
-Do NOT change this function
-'''
-
-
-def write_to_json(filename, addressbook: list) -> None:
-    json_object = json.dumps(addressbook, indent=4)
-
-    with open(os.path.join(sys.path[0], filename), "w") as outfile:
-        outfile.write(json_object)
-
-
-'''
-main function:
-# build menu structure as following
-# the input can be case-insensitive (so E and e are valid inputs)
-# [L] List contacts
-# [A] Add contact
-# [R] Remove contact
-# [M] Merge contacts
-# [Q] Quit program
-Don't forget to put the contacts.json file in the same location as this file!
-'''
-
-
-def quit_program(addressbook):
-    quit()
-
-
-def main(json_file):
-    menu = [
-        {"key": "L", "name": "List contacts", "function": list_contacts},
-        {"key": "A", "name": "Add contact", "function": add_contact},
-        {"key": "R", "name": "Remove contact", "function": remove_contact},
-        {"key": "M", "name": "Merge contacts", "function": merge_contacts},
-        {"key": "Q", "name": "Quit program", "function": quit_program}
-    ]
-    addressbook = read_from_json(json_file)
-
-    for option in menu:
-        print("[" + option["key"] + "] " + option["name"])
-    selection = input(">>")
-    for i, option in enumerate(menu):
-        if selection.upper() in menu[i]["key"]:
-            return menu[i]["function"](addressbook)
-
-'''
-calling main function: 
-Do NOT change it.
-'''
 if __name__ == "__main__":
-    main('contacts.json')
+    main()

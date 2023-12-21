@@ -30,6 +30,7 @@ def validate_data(line):
     def append_invalid_line(array):
         corrupt_lines.append(line + ' => INVALID DATA: [' + array + ']')
 
+    # todo destructuring
     values = line.split(",")
     student_nr = values[0]
     first_name = values[1]
@@ -122,7 +123,6 @@ def main(csv_file):
     print('### CORRUPT LINES ###')
     print("\n".join(corrupt_lines))
     print('...')
-
 
 
 if __name__ == "__main__":

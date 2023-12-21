@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f930887-3a89-4b5d-bad5-088848ac2a9b" name="Changes" comment="" />
+    <list default="true" id="8f930887-3a89-4b5d-bad5-088848ac2a9b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../W1/A1/A1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../W1/A1/A1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../W1/A2/A2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../W1/A2/A2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/A1.py" beforeDir="false" afterPath="$PROJECT_DIR$/A1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../A2/W5/A1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../A2/W5/A1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../A2/W6/W6.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../A2/W6/W6.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../A2/W6/contacts.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../A2/W6/contacts.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,24 +20,24 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2VtJSx7ZNz5TNGKrR5g8avCu8M2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/jalen/projects/HR-Projects/BaseCamp/A1/W3",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jalen/projects/HR-Projects/BaseCamp/A1/W3&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,6 +47,7 @@
       <option name="presentableId" value="Default" />
       <updated>1695649447217</updated>
       <workItem from="1695649448256" duration="26000" />
+      <workItem from="1702743084604" duration="10000" />
     </task>
     <servers />
   </component>
