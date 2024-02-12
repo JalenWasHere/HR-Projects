@@ -1,2 +1,5 @@
 *Icon
 .idea/
+**/bin
+**/obj
+**/__pycache__
