@@ -1,3 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿class Program
+{
+    static void Main()
+    {
+        var pack = new List<string>()
+        {
+            "laptop",
+            "lunch",
+            "notebook",
+            "pen",
+        };
 
-Console.WriteLine("Hello, World!");
+        Console.WriteLine($"The first item in the pack is a " + pack[0]);
+        Console.WriteLine($"The last item in the pack is a " + pack[pack.Count - 1]);
+    }
+}
